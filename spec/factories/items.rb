@@ -19,8 +19,4 @@ FactoryBot.define do
       item.accessories << Accessory.order("RANDOM()").limit(2)
     end
   end
-
-  factory :artist_name do
-    name { "アーティスト" }
-  end
 end
