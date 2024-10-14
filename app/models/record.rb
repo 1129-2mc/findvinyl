@@ -5,6 +5,7 @@ class Record < ApplicationRecord
   has_many :items, through: :record_items
 
   validates :content, length: { maximum: 10_000 }
+  validates :items, presence: true
 
   def start_time
     created_at
