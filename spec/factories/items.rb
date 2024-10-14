@@ -28,10 +28,6 @@ FactoryBot.define do
     name { "アーティスト" }
   end
 
-  factory :release_format do
-    name { "フォーマット" }
-  end
-
   factory :press_country do
     name { "プレス国" }
   end

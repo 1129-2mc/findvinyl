@@ -24,7 +24,7 @@ RSpec.describe Review, type: :model do
     end
   end
 
-  context 'レビュー本文が10000文字以上の場合' do
+  context 'レビュー本文が10001文字以上の場合' do
     it '無効であること' do
       review = build(:review, content: 'a' * 10001)
       expect(review).to be_invalid
