@@ -27,6 +27,7 @@ module Findvinyl
       g.helper false
       g.test_framework nil
       g.routing_specs false
+      g.factory_bot dir: 'spec/factories'
     end
 
     config.i18n.default_locale = :ja
