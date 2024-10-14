@@ -20,10 +20,6 @@ FactoryBot.define do
     end
   end
 
-  factory :title do
-    name { "タイトル" }
-  end
-
   factory :artist_name do
     name { "アーティスト" }
   end

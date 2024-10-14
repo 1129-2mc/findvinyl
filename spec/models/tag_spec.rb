@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
 
-  context 'フォーマットが255文字以内の場合' do
+  context 'タグが255文字以内の場合' do
     it '有効であること' do
       tag = build(:tag, name: 'a' * 255)
       expect(tag).to be_valid
     end
   end
 
-  context 'フォーマットが256文字以上の場合' do
+  context 'タグが256文字以上の場合' do
     it '無効であること' do
       tag = build(:tag, name: 'a' * 256)
       expect(tag).to be_invalid
