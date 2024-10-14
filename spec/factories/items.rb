@@ -27,8 +27,4 @@ FactoryBot.define do
   factory :artist_name do
     name { "アーティスト" }
   end
-
-  factory :tag do
-    sequence(:name) { |n| "タグ#{n}" }
-  end
 end
