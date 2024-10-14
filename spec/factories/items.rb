@@ -28,10 +28,6 @@ FactoryBot.define do
     name { "アーティスト" }
   end
 
-  factory :matrix_number do
-    number { "1000" }
-  end
-
   factory :tag do
     sequence(:name) { |n| "タグ#{n}" }
   end
