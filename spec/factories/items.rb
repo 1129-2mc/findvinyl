@@ -28,10 +28,6 @@ FactoryBot.define do
     name { "アーティスト" }
   end
 
-  factory :press_country do
-    name { "プレス国" }
-  end
-
   factory :matrix_number do
     number { "1000" }
   end
