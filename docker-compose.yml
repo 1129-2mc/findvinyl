@@ -24,5 +24,10 @@ services:
       - db
     environment:
       RAILS_ENV: ${RAILS_ENV}
+      SELENIUM_DRIVER_URL: http://selenium:4444/wd/hub
+  selenium:
+    image: seleniarm/standalone-chromium:latest
+    ports:
+      - 4444:4444
 volumes:
   postgres_volume:
