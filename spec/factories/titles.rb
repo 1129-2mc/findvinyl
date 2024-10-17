@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :title do
-    name { "タイトル" }
+    sequence(:name) { |n| "タイトル#{n}" }
   end
 end

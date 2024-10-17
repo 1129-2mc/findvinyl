@@ -7,9 +7,16 @@ FactoryBot.define do
     association :matrix_number
     condition_id { Condition.pluck(:id).sample }
     user_note { "メモ" }
-    role { "collection" }
     status { "active" }
     association :user
+
+    trait :collection do
+      role { :collection }
+    end
+
+    trait :want do
+      role { :want }
+    end
 
     after(:build) do |item|
       item.tags = create_list(:tag, 3)

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :artist_name do
-    name { "アーティスト" }
+    sequence(:name) { |n| "アーティスト#{n}" }
   end
 end
