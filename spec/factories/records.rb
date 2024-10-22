@@ -3,8 +3,10 @@ FactoryBot.define do
     content  { '本文' }
     association :user
 
-    after(:build) do |record|
-      record.items << build_stubbed(:item)
+    trait :with_item do
+      after(:create) do |record, evaluator|
+        record.items << create(:item)
+      end
     end
   end
 end
