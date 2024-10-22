@@ -369,100 +369,100 @@ RSpec.describe "アイテム", type: :system do
         end
       end
     end
+  end
 
-    describe 'アイテム検索' do
-      before do
-        login(user)
-      end
-      context 'コレクション' do
-        let!(:title1) { create(:title, name: 'はっぴいえんど') }
-        let!(:artist_name1) { create(:artist_name, name: '風街ろまん') }
-        let!(:collection_item1) { create(:item, :collection, user: user, title: title1, artist_name: artist_name1) }
-        let!(:title2) { create(:title, name: '吉田美奈子') }
-        let!(:artist_name2) { create(:artist_name, name: 'FLAPPER') }
-        let!(:collection_item2) { create(:item, :collection, user: user, title: title2, artist_name: artist_name2) }
-        context 'タイトルでの検索機能を検証' do
-          it '該当するアイテムのみ表示されること' do
-            visit '/collection_items'
-            fill_in 'コレクション内検索', with: 'は'
-            within(:xpath, "//form[@action='#{collection_items_path}']") do
-              find('button[type="submit"]').click
-            end
-            expect(page).to have_current_path("/collection_items", ignore_query: true), 'コレクション一覧でないページに遷移しています'
-            expect(page).to have_content(collection_item1.title.name), 'タイトルでの検索機能が正しく機能していません'
-            expect(page).not_to have_content(collection_item2.title.name), 'タイトルでの検索機能が正しく機能していません'
+  describe 'アイテム検索' do
+    before do
+      login(user)
+    end
+    context 'コレクション' do
+      let!(:title1) { create(:title, name: 'はっぴいえんど') }
+      let!(:artist_name1) { create(:artist_name, name: '風街ろまん') }
+      let!(:collection_item1) { create(:item, :collection, user: user, title: title1, artist_name: artist_name1) }
+      let!(:title2) { create(:title, name: '吉田美奈子') }
+      let!(:artist_name2) { create(:artist_name, name: 'FLAPPER') }
+      let!(:collection_item2) { create(:item, :collection, user: user, title: title2, artist_name: artist_name2) }
+      context 'タイトルでの検索機能を検証' do
+        it '該当するアイテムのみ表示されること' do
+          visit '/collection_items'
+          fill_in 'コレクション内検索', with: 'は'
+          within(:xpath, "//form[@action='#{collection_items_path}']") do
+            find('button[type="submit"]').click
           end
-        end
-
-        context 'アーティスト名での検索機能を検証' do
-          it '該当するアイテムのみ表示されること' do
-            visit '/collection_items'
-            fill_in 'コレクション内検索', with: 'F'
-            within(:xpath, "//form[@action='#{collection_items_path}']") do
-              find('button[type="submit"]').click
-            end
-            expect(page).to have_current_path("/collection_items", ignore_query: true), 'コレクション一覧でないページに遷移しています'
-            expect(page).to have_content(collection_item2.title.name), 'アーティスト名での検索機能が正しく機能していません'
-            expect(page).not_to have_content(collection_item1.title.name), 'アーティスト名での検索機能が正しく機能していません'
-          end
-        end
-
-        context '検索条件に該当するアイテムがない場合' do
-          it '1件もない旨のメッセージが表示されること' do
-            visit '/collection_items'
-            fill_in 'コレクション内検索', with: '無い'
-            within(:xpath, "//form[@action='#{collection_items_path}']") do
-              find('button[type="submit"]').click
-            end
-            expect(page).to have_current_path("/collection_items", ignore_query: true), 'コレクション一覧でないページに遷移しています'
-            expect(page).to have_content('コレクションがありません'), '検索結果が一件もない場合、「コレクションがありません」というメッセージが表示されていません'
-          end
+          expect(page).to have_current_path("/collection_items", ignore_query: true), 'コレクション一覧でないページに遷移しています'
+          expect(page).to have_content(collection_item1.title.name), 'タイトルでの検索機能が正しく機能していません'
+          expect(page).not_to have_content(collection_item2.title.name), 'タイトルでの検索機能が正しく機能していません'
         end
       end
 
-      context '欲しいもの' do
-        let!(:title1) { create(:title, name: 'はっぴいえんど') }
-        let!(:artist_name1) { create(:artist_name, name: '風街ろまん') }
-        let!(:want_item1) { create(:item, :want, user: user, title: title1, artist_name: artist_name1) }
-        let!(:title2) { create(:title, name: '吉田美奈子') }
-        let!(:artist_name2) { create(:artist_name, name: 'FLAPPER') }
-        let!(:want_item2) { create(:item, :want, user: user, title: title2, artist_name: artist_name2) }
-        context 'タイトルでの検索機能を検証' do
-          it '該当するアイテムのみ表示されること' do
-            visit '/want_items'
-            fill_in '欲しいもの内検索', with: 'は'
-            within(:xpath, "//form[@action='#{want_items_path}']") do
-              find('button[type="submit"]').click
-            end
-            expect(page).to have_current_path("/want_items", ignore_query: true), '欲しいもの一覧でないページに遷移しています'
-            expect(page).to have_content(want_item1.title.name), 'タイトルでの検索機能が正しく機能していません'
-            expect(page).not_to have_content(want_item2.title.name), 'タイトルでの検索機能が正しく機能していません'
+      context 'アーティスト名での検索機能を検証' do
+        it '該当するアイテムのみ表示されること' do
+          visit '/collection_items'
+          fill_in 'コレクション内検索', with: 'F'
+          within(:xpath, "//form[@action='#{collection_items_path}']") do
+            find('button[type="submit"]').click
           end
+          expect(page).to have_current_path("/collection_items", ignore_query: true), 'コレクション一覧でないページに遷移しています'
+          expect(page).to have_content(collection_item2.title.name), 'アーティスト名での検索機能が正しく機能していません'
+          expect(page).not_to have_content(collection_item1.title.name), 'アーティスト名での検索機能が正しく機能していません'
         end
+      end
 
-        context 'アーティスト名での検索機能を検証' do
-          it '該当するアイテムのみ表示されること' do
-            visit '/want_items'
-            fill_in '欲しいもの内検索', with: 'F'
-            within(:xpath, "//form[@action='#{want_items_path}']") do
-              find('button[type="submit"]').click
-            end
-            expect(page).to have_current_path("/want_items", ignore_query: true), '欲しいもの一覧でないページに遷移しています'
-            expect(page).to have_content(want_item2.title.name), 'アーティスト名での検索機能が正しく機能していません'
-            expect(page).not_to have_content(want_item1.title.name), 'アーティスト名での検索機能が正しく機能していません'
+      context '検索条件に該当するアイテムがない場合' do
+        it '1件もない旨のメッセージが表示されること' do
+          visit '/collection_items'
+          fill_in 'コレクション内検索', with: '無い'
+          within(:xpath, "//form[@action='#{collection_items_path}']") do
+            find('button[type="submit"]').click
           end
+          expect(page).to have_current_path("/collection_items", ignore_query: true), 'コレクション一覧でないページに遷移しています'
+          expect(page).to have_content('コレクションがありません'), '検索結果が一件もない場合、「コレクションがありません」というメッセージが表示されていません'
         end
+      end
+    end
 
-        context '検索条件に該当するアイテムがない場合' do
-          it '1件もない旨のメッセージが表示されること' do
-            visit '/want_items'
-            fill_in '欲しいもの内検索', with: '無い'
-            within(:xpath, "//form[@action='#{want_items_path}']") do
-              find('button[type="submit"]').click
-            end
-            expect(page).to have_current_path("/want_items", ignore_query: true), '欲しいもの一覧でないページに遷移しています'
-            expect(page).to have_content('欲しいものがありません'), '検索結果が一件もない場合、「欲しいものがありません」というメッセージが表示されていません'
+    context '欲しいもの' do
+      let!(:title1) { create(:title, name: 'はっぴいえんど') }
+      let!(:artist_name1) { create(:artist_name, name: '風街ろまん') }
+      let!(:want_item1) { create(:item, :want, user: user, title: title1, artist_name: artist_name1) }
+      let!(:title2) { create(:title, name: '吉田美奈子') }
+      let!(:artist_name2) { create(:artist_name, name: 'FLAPPER') }
+      let!(:want_item2) { create(:item, :want, user: user, title: title2, artist_name: artist_name2) }
+      context 'タイトルでの検索機能を検証' do
+        it '該当するアイテムのみ表示されること' do
+          visit '/want_items'
+          fill_in '欲しいもの内検索', with: 'は'
+          within(:xpath, "//form[@action='#{want_items_path}']") do
+            find('button[type="submit"]').click
           end
+          expect(page).to have_current_path("/want_items", ignore_query: true), '欲しいもの一覧でないページに遷移しています'
+          expect(page).to have_content(want_item1.title.name), 'タイトルでの検索機能が正しく機能していません'
+          expect(page).not_to have_content(want_item2.title.name), 'タイトルでの検索機能が正しく機能していません'
+        end
+      end
+
+      context 'アーティスト名での検索機能を検証' do
+        it '該当するアイテムのみ表示されること' do
+          visit '/want_items'
+          fill_in '欲しいもの内検索', with: 'F'
+          within(:xpath, "//form[@action='#{want_items_path}']") do
+            find('button[type="submit"]').click
+          end
+          expect(page).to have_current_path("/want_items", ignore_query: true), '欲しいもの一覧でないページに遷移しています'
+          expect(page).to have_content(want_item2.title.name), 'アーティスト名での検索機能が正しく機能していません'
+          expect(page).not_to have_content(want_item1.title.name), 'アーティスト名での検索機能が正しく機能していません'
+        end
+      end
+
+      context '検索条件に該当するアイテムがない場合' do
+        it '1件もない旨のメッセージが表示されること' do
+          visit '/want_items'
+          fill_in '欲しいもの内検索', with: '無い'
+          within(:xpath, "//form[@action='#{want_items_path}']") do
+            find('button[type="submit"]').click
+          end
+          expect(page).to have_current_path("/want_items", ignore_query: true), '欲しいもの一覧でないページに遷移しています'
+          expect(page).to have_content('欲しいものがありません'), '検索結果が一件もない場合、「欲しいものがありません」というメッセージが表示されていません'
         end
       end
     end
