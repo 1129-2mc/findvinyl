@@ -4,7 +4,7 @@ class Shop < ApplicationRecord
   validates :longitude, presence: true
   validates :place_id, presence: true
 
-  has_many :bookmark_shops, dependent: :destroy
+  has_many :shop_bookmarks, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   def self.ransackable_attributes(_auth_object = nil)
