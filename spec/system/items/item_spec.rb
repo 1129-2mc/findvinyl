@@ -85,7 +85,7 @@ RSpec.describe "アイテム", type: :system do
 
             context '11件以上ある場合' do
               let!(:collection_items) { create_list(:item, 11, :collection, user: user) }
-              it 'ページネーションが表示されること' do
+              it 'ページングが表示されること' do
                 visit '/collection_items'
                 expect(page).to have_selector('.pagination'), 'ページングが表示されていません'
               end
@@ -115,7 +115,7 @@ RSpec.describe "アイテム", type: :system do
 
             context '11件以上ある場合' do
               let!(:want_items) { create_list(:item, 11, :want, user: user) }
-              it 'ページネーションが表示されること' do
+              it 'ページングが表示されること' do
                 visit '/want_items'
                 expect(page).to have_selector('.pagination'), 'ページングが表示されていません'
               end
