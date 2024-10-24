@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.build(review_params)
     if @review.save
-      @reviews_count = @shop.review.count
+      @reviews_count = @shop.reviews.count
       flash.now.notice = t('.success')
       render :create
     else
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
   def destroy
     @shop = @review.shop
     @review.destroy!
-    @reviews_count = @shop.review.count
+    @reviews_count = @shop.reviews.count
     flash.now.notice = t('defaults.flash_message.deleted', item: Review.model_name.human)
     render :destroy
   end
