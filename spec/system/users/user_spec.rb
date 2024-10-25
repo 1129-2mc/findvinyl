@@ -27,7 +27,6 @@ RSpec.describe "ユーザー登録・削除", type: :system do
           fill_in 'パスワード', with: '11223344'
           fill_in 'パスワード確認', with: '11223344'
           click_button '登録'
-          page.save_screenshot('screenshot.png')
         }.to change { User.count }.by(1)
         expect(page).to have_current_path('/shops/map'), '直前のURLに遷移していません'
         expect(page).to have_content('ユーザー登録が完了しました'), 'フラッシュメッセージ「ユーザー登録が完了しました」が表示されていません'

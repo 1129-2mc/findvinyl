@@ -8,12 +8,22 @@ RSpec.describe "ログイン・ログアウト", type: :system do
   describe '通常画面' do
     describe 'ログイン' do
       context '認証情報が正しい場合' do
-        it 'ログインできること' do
+        it 'ログインし、直前のURLがない場合はルートパスに遷移すること' do
           visit '/login'
           fill_in 'メールアドレス', with: general_user.email
           fill_in 'パスワード', with: '11223344'
           click_button I18n.t('user_sessions.new.login')
           expect(page).to have_current_path("/", ignore_query: true), 'ログインに失敗しました'
+          expect(page).to have_content('ログインしました'), 'フラッシュメッセージ「ログインしました」が表示されていません'
+        end
+
+        it 'ログインし、直前のURLに遷移すること' do
+          visit '/shops/map'
+          visit '/login'
+          fill_in 'メールアドレス', with: general_user.email
+          fill_in 'パスワード', with: '11223344'
+          click_button I18n.t('user_sessions.new.login')
+          expect(page).to have_current_path('/shops/map'), '直前のURLに遷移していません'
           expect(page).to have_content('ログインしました'), 'フラッシュメッセージ「ログインしました」が表示されていません'
         end
       end
