@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     if update_item
       redirect_to item_path(@item), notice: t('defaults.flash_message.updated', item: Item.model_name.human)
     else
-      flash.now[:alert] = t('defaults.flash_message.not_updated', item: Item.model_name.huma)
+      flash.now[:alert] = t('defaults.flash_message.not_updated', item: Item.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -75,7 +75,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = current_user.items.find_by(id: params[:id])
-    raise ActiveRecord::RecordNotFound, t('defaults.flash_message.not_found', item: Item.model_name.huma) unless @item
+    raise ActiveRecord::RecordNotFound, t('defaults.flash_message.not_found', item: Item.model_name.human) unless @item
   end
 
   def set_select_items

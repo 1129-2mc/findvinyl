@@ -482,6 +482,7 @@ DEPENDENCIES
   rubocop-checkstyle_formatter
   rubocop-rails
   sassc-rails
+  selenium-webdriver
   simple_calendar
   sorcery (= 0.16.3)
   sprockets-rails

@@ -24,5 +24,12 @@ services:
       - db
     environment:
       RAILS_ENV: ${RAILS_ENV}
+      SELENIUM_DRIVER_URL: http://selenium:4444/wd/hub
+      CAPYBARA_SERVER_HOST: '0.0.0.0'
+      CAPYBARA_APP_HOST: 'http://web:3001'
+  selenium:
+    image: seleniarm/standalone-chromium:latest
+    ports:
+      - 4444:4444
 volumes:
   postgres_volume:

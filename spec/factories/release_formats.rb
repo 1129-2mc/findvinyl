@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :release_format do
-    name { "フォーマット" }
+    sequence(:name) { |n| "フォーマット#{n}" }
   end
 end

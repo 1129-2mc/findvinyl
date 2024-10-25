@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :matrix_number do
-    number { "1000" }
+    sequence(:number) { |n| "マトリクスナンバー#{n}" }
   end
 end
