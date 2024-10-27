@@ -71,13 +71,9 @@ gem 'mini_magick'
 
 # 画像の保存
 gem 'fog-aws'
-gem 'aws-sdk-s3', require: false
 
 # デバッグ
 gem 'pry-byebug'
-
-# CSS
-gem 'cssbundling-rails'
 
 # JavaScript
 gem 'jsbundling-rails'
