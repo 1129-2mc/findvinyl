@@ -11,64 +11,66 @@
       <%= render 'shared/error_messages', object: form.object %>
 
       <div class="form-control">
-        <%= form.label :title, class: "label" do %>
-        <div class="flex items-center">
-          <%= form.object.class.human_attribute_name(:title) %>
-          <span class="text-red-500 ml-2">*</span>
-        </div>
+        <%= form.label :title, class: "label", for: "item_title" do %>
+          <div class="flex items-center">
+            <%= form.object.class.human_attribute_name(:title) %>
+            <span class="text-red-500 ml-2">*</span>
+          </div>
         <% end %>
-        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" }, required: true %>
+        <%= form.text_field :title, value: @item.title&.name || params[:item]&.fetch(:title, nil), id: "item_title", class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" }, required: true %>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :artist_name, class: "label" do %>
+        <%= form.label :artist_name, class: "label", for: "item_artist_name" do %>
           <div class="flex items-center">
             <%= form.object.class.human_attribute_name(:artist_name) %>
             <span class="text-red-500 ml-2">*</span>
           </div>
         <% end %>
-        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" }, required: true %>
+        <%= form.text_field :artist_name, value: @item.artist_name&.name || params[:item]&.fetch(:artist_name, nil), id: "item_artist_name", class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" }, required: true %>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :release_format, class: "label" %>
-        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
+        <%= form.label :release_format, class: "label", for: "item_release_format" %>
+        <%= form.text_field :release_format, value: @item.release_format&.name || params[:item]&.fetch(:release_format, nil), id: "item_release_format", class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :press_country, class: "label" %>
-        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
+        <%= form.label :press_country, class: "label", for: "item_press_country" %>
+        <%= form.text_field :press_country, value: @item.press_country&.name || params[:item]&.fetch(:press_country, nil), id: "item_press_country", class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :matrix_number, class: "label" %>
-        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
+        <%= form.label :matrix_number, class: "label", for: "item_matrix_number" %>
+        <%= form.text_field :matrix_number, value: @item.matrix_number&.number || params[:item]&.fetch(:matrix_number, nil), id: "item_matrix_number", class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :condition, class: "label" %>
+        <%= form.label :condition, class: "label", for: "item_condition_id" %>
         <%= form.select :condition_id,
-                        @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true},
-                        {class: "select select-bordered text-base-100"} %>
+                        @conditions.map { |condition| [condition.grade, condition.id] }, 
+                        {include_blank: true},
+                        {class: "select select-bordered text-base-100", id: "item_condition_id"} %>
       </div>
-
+      
       <div data-controller="item-edit">
         <div class="form-control">
-          <%= form.label :accessories, class: "label" %>
+          <%= form.label :accessories, class: "label", for: "item_accessory_ids" %>
           <%= form.select :accessory_ids, 
-                          @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
-                          { class: 'select2 text-base-100', multiple: true } %>
+                          @accessories.map { |accessory| [accessory.name, accessory.id] }, 
+                          {}, 
+                          {class: "select2 text-base-100", multiple: true, id: "item_accessory_ids"} %>
         </div>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :tag, class: "label" %>
-        <%= form.text_field :tag, value: @item.tag_names, placeholder: t('items.placeholder.tag_input'), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
+        <%= form.label :tag, class: "label", for: "item_tag" %>
+        <%= form.text_field :tag, value: @item.tag_names, id: "item_tag", placeholder: t('items.placeholder.tag_input'), class: "input input-bordered text-base-100", data: { max_length: 255, item_validation_target: "field" } %>
       </div>
-
+      
       <div class="form-control">
-        <%= form.label :user_note, class: "label" %>
-        <%= form.text_area :user_note, value: @item.user_note, class: "textarea textarea-bordered text-base-100" %>
+        <%= form.label :user_note, class: "label", for: "item_user_note" %>
+        <%= form.text_area :user_note, value: @item.user_note, id: "item_user_note", class: "textarea textarea-bordered text-base-100" %>
       </div>
 
       <div class="flex justify-center mt-6">
