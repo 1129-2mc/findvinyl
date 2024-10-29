@@ -48,18 +48,18 @@
       </div>
 
       <div class="form-control">
-        <%= form.label :condition, class: "label" %>
+        <%= form.label :condition, for: "item_condition_id", class: "label" %>
         <%= form.select :condition_id,
                         @conditions.map { |condition| [condition.grade, condition.id] }, {include_blank: true},
-                        {class: "select select-bordered text-base-100"} %>
+                        {class: "select select-bordered text-base-100", id: "item_condition_id"} %>
       </div>
 
       <div data-controller="item-new">
         <div class="form-control">
-          <%= form.label :accessories, class: "label" %>
+          <%= form.label :accessories, for: "item_accessory_ids", class: "label" %>
           <%= form.select :accessory_ids, 
-                          @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
-                          { class: "select2 text-base-100", multiple: true } %>
+                          @accessories.map { |accessory| [accessory.name, accessory.id] }, {},
+                          {class: "select2 text-base-100", multiple: true, id: "item_accessory_ids"} %>
         </div>
       </div>
 
