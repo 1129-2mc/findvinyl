@@ -74,14 +74,14 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "findvinyl_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'vinyllog-233013640988.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'vinyllog.jp' }
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'vinyllog-233013640988.herokuapp.com',
+    domain:               'vinyllog.jp',
     user_name:            ENV['GMAIL_USERNAME'],
     password:             ENV['GMAIL_PASSWORD'],
     authentication:       'plain',
@@ -112,5 +112,6 @@ Rails.application.configure do
 
   config.cache_classes = true
 
-  config.hosts << 'vinyllog-233013640988.herokuapp.com'
+  config.hosts << 'vinyllog.jp'
+  config.hosts << 'www.vinyllog.jp'
 end
