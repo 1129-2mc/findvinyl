@@ -113,5 +113,4 @@ Rails.application.configure do
   config.cache_classes = true
 
   config.hosts << 'vinyllog.jp'
-  config.hosts << 'www.vinyllog.jp'
 end
