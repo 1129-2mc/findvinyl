@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default_url_options[:host] = 'vinyllog-233013640988.herokuapp.com'
+  default_url_options[:host] = 'vinyllog.jp'
 
   def reset_password_email(user)
     @user = User.find(user.id)
