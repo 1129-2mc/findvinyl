@@ -53,7 +53,8 @@
       </div>
 
       <div data-controller="item-edit">
-          <%= form.label :accessories, for: "item_accessory_ids", class: "label" %>
+        <div class="form-control">
+        <%= form.label :accessories, for: "item_accessory_ids", class: "label" %>
           <%= form.select :accessory_ids, 
                           @accessories.map { |accessory| [accessory.name, accessory.id] }, {}, 
                           {class: "select2 text-base-100", multiple: true, id: "item_accessory_ids"} %>
