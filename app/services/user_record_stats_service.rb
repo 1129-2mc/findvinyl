@@ -8,7 +8,7 @@ class UserRecordStatsService
   # 日別レコード再生数を集計
   def monthly_creation_count(date)
     from_date, to_date = month_range(date)
-    base_query(from_date, to_date).group_by_day(:created_at).count
+    base_query(from_date, to_date).group_by_day('records.created_at').count
   end
 
   # １ヶ月でよく聞いたアーティストを集計
@@ -55,6 +55,6 @@ class UserRecordStatsService
 
   def base_query(from_date, to_date)
     RecordItem.joins(:record)
-              .where(records: { user_id: @user.id }, record_items: { created_at: from_date..to_date })
+              .where(records: { user_id: @user.id, created_at: from_date..to_date })
   end
 end
