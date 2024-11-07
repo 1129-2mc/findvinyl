@@ -21,6 +21,7 @@
 |------------|------------|------------|
 | ![demo](https://raw.github.com/wiki/1129-2mc/findvinyl/images/Gif/record.gif) | ![demo](https://raw.github.com/wiki/1129-2mc/findvinyl/images/Gif/report.gif) | ![demo](https://raw.github.com/wiki/1129-2mc/findvinyl/images/Gif/mypage.gif) |
 | 聴いたレコードの記録をすること<br>ができます。リストに追加したレ<br>コードのみ記録可能です。 | 聴いたレコードの１ヶ月間の集計<br>を閲覧できます。よく聴いたアー<br>ティストやレコードなどが集計さ<br>れます。 | マイページにコレクションリスト<br>のレコードがランダムに表示され<br>ます。 |
+<br>
 
 ## 機能一覧
 - アカウント登録・削除機能
@@ -62,9 +63,11 @@
 | データベース | PostgreSQL |
 | インフラ | Heroku<br>AmazonS3 |
 | 開発環境 | Docker |
+<br>
 
 ## 画面遷移図(未修正)
 https://www.figma.com/file/TZELZVG8E9e6JrvN6ppkJ8/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=E16sPwSsSS5nkWbD-1
+<br>
 
 ## ER図
 
