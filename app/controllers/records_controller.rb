@@ -49,7 +49,10 @@ class RecordsController < ApplicationController
 
   def update
     if @record.update(record_params)
-      update_record_items
+      @record.record_items.destroy_all
+      params[:item_ids].each do |item_id|
+        @record.record_items.create(item_id:)
+      end
       redirect_to record_path(@record), notice: t('defaults.flash_message.updated', item: Record.model_name.human)
     else
       flash.now[:alert] = t('defaults.flash_message.not_updated', item: Record.model_name.human)
@@ -94,30 +97,5 @@ class RecordsController < ApplicationController
 
   def determine_date
     params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.current
-  end
-
-  def update_record_items
-    existing_items = @record.record_items.to_a
-    update_existing_items(existing_items)
-    remove_excess_items(existing_items)
-  end
-
-  def update_existing_items(existing_items)
-    params[:item_ids].each_with_index do |item_id, index|
-      if existing_items[index]
-        # 既存のrecord_itemがある場合は更新
-        existing_items[index].update(item_id:)
-      else
-        # 既存のrecord_itemがない場合は作成
-        @record.record_items.create(item_id:)
-      end
-    end
-  end
-
-  # record編集時に不要になったrecord_itemを削除
-  def remove_excess_items(existing_items)
-    return unless existing_items.length > params[:item_ids].length
-
-    existing_items[params[:item_ids].length..].each(&:destroy)
   end
 end
